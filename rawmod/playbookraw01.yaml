@@ -1,0 +1,14 @@
+---
+- name: Exploring Ansible raw
+  hosts: tx_mid_svr       # the group name we wish to run the tasks against      
+  connection: ssh         # connect using OpenSSH if possible      
+  gather_facts: no        # do not audit target hosts (do not run setup.py)
+  # forks: 5              # how many simultaneous connections (default 5)
+
+  tasks:
+  - name: Create a file over an SSH channel
+    raw: echo $HOSTNAME > newfile01.txt
+
+  - name: Create a second file over an SSH channel
+    raw: echo "Hello world" > newfile02.txt
+

@@ -1,0 +1,20 @@
+---
+- name: Avoiding the use of ansible raw module
+  hosts: tx_mid_svr       # the group name we wish to run the tasks against      
+  connection: ssh         # connect using OpenSSH if possible      
+  gather_facts: yes       # audit target hosts (do not run setup.py)
+  # forks: 5              # how many simultaneous connections (default 5)
+
+  tasks:
+  - name: Create a file over an SSH channel
+    copy:
+      content: "{{ ansible_env.LOGNAME }}"
+      dest: newfile01.txt
+      force: yes   # remote file will be replaced when contents are different than the source
+
+  - name: Create a second file over an SSH channel
+    copy:
+      content: "Hello world"
+      dest: newfile02.txt
+      force: yes
+
