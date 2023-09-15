@@ -1,0 +1,4 @@
+---
+# vars file for /home/student/mycode/roles/precheck
+switch_image: "flash:/vEOS-lab.swi"
+switch_image_version: "4.22.0F"
